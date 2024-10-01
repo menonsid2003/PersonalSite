@@ -1,0 +1,12 @@
+:root {
+    /* Colors */
+    --color-text: #fff;
+    --color-primary: #134;
+    --color-secondary: #123;
+    --color-dark: #111;
+    --color-bg: #000;
+
+    --font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --line-height: 1.5;
+    --font-weight: 400;
+}

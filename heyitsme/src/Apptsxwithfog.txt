@@ -1,0 +1,56 @@
+import React, { useEffect, useRef } from 'react';
+import styles from './App.module.css';
+import * as THREE from 'three'; // Importing three.js
+
+function App() {
+  const vantaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let vantaEffect: VantaEffect | undefined;
+
+    const addVantaScript = () => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js';
+      script.async = true;
+      script.onload = () => {
+        if (vantaRef.current) {
+          // @ts-expect-error - since TypeScript doesn't know about the VANTA object from the CDN
+          vantaEffect = window.VANTA.FOG({
+            el: vantaRef.current,
+            THREE: THREE, // Pass the imported three.js
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            highlightColor: 0x292337,
+            midtoneColor: 0x10120,
+            lowlightColor: 0x917ae6,
+            baseColor: 0x0,
+            zoom: 2.20,
+            speed: 2
+          });
+        }
+      };
+      document.body.appendChild(script);
+    };
+
+    addVantaScript(); // Add the Vanta script dynamically
+
+    // Cleanup the effect on component unmount
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, []);
+
+  return (
+    <div className={styles.App}>
+      {/* Vanta.js background element */}
+      <div id="vanta-bg" ref={vantaRef} className={styles.vantaBg}></div>
+
+      {/* Spotlight and other elements */}
+      <img className={styles.spotlight} src="../assets/spotlight.png" alt="Spotlight" />
+      <div className={styles.hiya}>Hiya</div>
+    </div>
+  );
+}
+
+export default App;
