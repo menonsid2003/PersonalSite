@@ -38,6 +38,7 @@
     backdrop-filter: blur(4.5px);
     -webkit-backdrop-filter: blur(4.5px);
     border: 1px solid rgba(16, 5, 35, 0.55);
+    cursor: pointer;
 
     &:nth-child(1) {
       /**/
@@ -45,31 +46,27 @@
 
     &:nth-child(2) {
       /* From https://css.glass */
-background: rgba(36, 5, 56, 0.47);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(4.5px);
--webkit-backdrop-filter: blur(4.5px);
-border: 1px solid rgba(36, 5, 56, 0.55);
+      background: rgba(36, 5, 56, 0.47);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(4.5px);
+      -webkit-backdrop-filter: blur(4.5px);
+      border: 1px solid rgba(36, 5, 56, 0.55);
     }
 
     &:nth-child(3) {
       /* Parking Buddy colors */
-background: rgba(18, 159, 122, 0.39);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(3.3px);
--webkit-backdrop-filter: blur(3.3px);
-border: 1px solid rgba(18, 159, 122, 0.55);
+      background: rgba(18, 159, 122, 0.39);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(3.3px);
+      -webkit-backdrop-filter: blur(3.3px);
+      border: 1px solid rgba(18, 159, 122, 0.55);
     }
 
-    &:nth-child(4) {
+    &:nth-child(4) {}
 
-    }
-
-    &:nth-child(5) {
-
-    }
+    &:nth-child(5) {}
 
     &[data-pos="0"] {
       transform: translateY(0%);
@@ -121,6 +118,41 @@ border: 1px solid rgba(18, 159, 122, 0.55);
     .text {
       font-size: 18px;
       text-align: center;
+    }
+
+
+    &.expanded {
+      height: 500px;
+      width: 500px;
+      z-index: 6;
+      transform: translateY(-40%);
+
+      .expandedContent {
+        display: block;
+      }
+    }
+
+    .expandedContent {
+      display: none;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 5px;
+    }
+
+    .closeButton {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: rgba(255, 0, 0, 0.7);
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(255, 0, 0, 1);
+      }
     }
   }
 }
