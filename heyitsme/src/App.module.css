@@ -14,7 +14,7 @@
     z-index: 0;
 }
 
-/*
+
 .vantaBg {
     position: fixed;
     top: 0;
@@ -23,7 +23,7 @@
     height: 100vh;
     z-index: -2;
 }
-*/
+
 
 
 .spotlight {
@@ -90,16 +90,26 @@
     margin-top: -20px;
     left: 50%;
     transform: translateX(-50%);
-
-
-
     -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 90%);
     mask-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 30%, rgba(0, 0, 0, 1) 70%);
     -webkit-mask-size: cover;
     mask-size: cover;
 }
 
+.card{
+    position: absolute;
+    visibility: hidden;
+}
 
+.musicplayer {
+    position: absolute;
+    z-index: 1000; /* Ensure it appears above other content */
+    background-color: #050301;
+background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Shadow for visual effect */
+  }
 
 /*
 animation-name: floating;

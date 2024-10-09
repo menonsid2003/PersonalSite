@@ -1,10 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './carousel.module.scss';
-
+/* sfx from pixabay */
 const Card: React.FC = () => {
   const carouselListRef = useRef<HTMLUListElement | null>(null);
   const elemsRef = useRef<HTMLLIElement[]>([]);
-  const [expandedCardIndex, setExpandedCardIndex] = useState<number | null>(null); // Track which card is expanded
+  const [expandedCardIndex, setExpandedCardIndex] = useState<number | null>(null);
+
+  // Create Audio objects for the card expand/close sound effects
+  const expandAudio = useRef(new Audio('../assets/cardexpand.mp3'));
+  const closeAudio = useRef(new Audio('../assets/closecard.mp3'));
+
+  // Set the volume level (0 is muted, 1 is the maximum volume)
+  expandAudio.current.volume = 0.3;
+  closeAudio.current.volume = 0.2;
 
   useEffect(() => {
     const carouselList = carouselListRef.current;
@@ -12,25 +20,35 @@ const Card: React.FC = () => {
 
     // Add an event listener for click events on the carousel
     const handleCarouselClick = (event: MouseEvent) => {
-      const newActive = event.target as HTMLElement; // Cast to HTMLElement
+      const newActive = event.target as HTMLElement;
       const isItem = newActive.closest(`.${styles.carousel__item}`) as HTMLElement;
 
       if (!isItem) {
         return;
       }
 
-      // Find the current card in position 0
       const currentCardPos = elems.findIndex((elem) => elem && elem.dataset.pos === '0');
 
       if (isItem.dataset.pos === '0') {
-        // If the clicked item is the active one (in position 0), toggle expansion
         if (currentCardPos !== -1) {
+          if (expandedCardIndex === currentCardPos) {
+            // If the card is currently expanded, play close audio when collapsing it
+            closeAudio.current.play();
+          } else {
+            // If the card is being expanded, play expand audio
+            expandAudio.current.play();
+          }
+          // Toggle expansion state
           setExpandedCardIndex((prevIndex) => (prevIndex === currentCardPos ? null : currentCardPos));
         }
       } else {
         // Collapse the expanded card when switching to another card
+        if (expandedCardIndex !== null) {
+          // Play the close audio when any expanded card is collapsed
+          closeAudio.current.play();
+        }
         setExpandedCardIndex(null);
-        update(isItem as HTMLElement); // Cast to HTMLElement
+        update(isItem as HTMLElement);
       }
     };
 
@@ -77,7 +95,7 @@ const Card: React.FC = () => {
         carouselList.removeEventListener('click', handleCarouselClick);
       }
     };
-  }, []);
+  }, [expandedCardIndex]);
 
   return (
     <div className={styles.carousel}>
@@ -88,17 +106,56 @@ const Card: React.FC = () => {
           data-pos="-2"
         >
           <img src="../assets/gamehaven.png" alt="Description 1" />
-          <div className={styles.text}>Card 1</div>
-          <p className={styles.info}>gaming gaming gaming</p>
+          <div className={styles.text}>Game Haven</div>
+          {expandedCardIndex === 0 && (
+            <div className={styles.expandedContent}>
+              <div className={styles.info}>
+              <ul>
+                  <li>
+                Constructed a full-stack web application that mimicked an online video game store, with a dynamically updated store page
+                containing hundreds of games and functionality that allowed visitors to create a cart and checkout items.
+                </li>
+                  <li>
+                  Incorporated and integrated a diverse array of tools such as React, MySQL, Sass, Redux, and HTML suite to create a 
+                  seamless, responsive user interface and database, along with an encrypted user account management and privileged access system.
+                  </li>
+                  <li>
+                    Developed an encrypted user account management system with privileged access control to safeguard user data.
+                  </li>
+                </ul>
+              </div>
+              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+                Close
+              </button>
+            </div>
+          )}
         </li>
+  
         <li
           ref={(el) => (elemsRef.current[1] = el as HTMLLIElement)}
           className={`${styles.carousel__item} ${expandedCardIndex === 1 ? styles.expanded : ''}`}
           data-pos="-1"
         >
-          <img src="path_to_your_image2.jpg" alt="Description 2" />
-          <div className={styles.text}>Card 2</div>
+          <img src="../assets/stockapp.png" alt="Stock Analysis App" />
+          <div className={styles.text}>Stock Analysis App</div>
+          {expandedCardIndex === 1 && (
+            <div className={styles.expandedContent}>
+              <div className={styles.info}>
+              <ul>
+                <li>
+                Developed a Windows Forms Application in C# based on Yahoo Finance data for the simultaneous and efficient comparison
+                of multiple candlestick-style stock charts, using dynamic pattern recognition and trend analysis to map out over 1200 
+                data points within searchable fiscal periods using object-oriented design.
+                </li>
+                </ul>
+              </div>
+              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+                Close
+              </button>
+            </div>
+          )}
         </li>
+  
         <li
           ref={(el) => (elemsRef.current[2] = el as HTMLLIElement)}
           className={`${styles.carousel__item} ${styles.carousel__item_active} ${expandedCardIndex === 2 ? styles.expanded : ''}`}
@@ -108,13 +165,25 @@ const Card: React.FC = () => {
           <div className={styles.text}>Parking Buddy</div>
           {expandedCardIndex === 2 && (
             <div className={styles.expandedContent}>
-              <p>Additional Information about Parking Buddy.</p>
+              <div className={styles.info}>
+                <ul>
+                  <li>
+                  Created a Ruby web page using the Google Maps API to display a map of the university and parking lots,
+                   showing available and taken spots, streamlining experiences for students, faculty, and visitors.
+                  </li>
+                  <li>
+                  Adopted Agile methodologies and operated as a mock Scrum team with 4 members, holding 15 meetings over
+                  3 months, leveraging GitHub for collaborative development, task management, testing, and version control to ensure efficient communication and project workflow.
+                  </li>
+                </ul>
+              </div>
               <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
                 Close
               </button>
             </div>
           )}
         </li>
+  
         <li
           ref={(el) => (elemsRef.current[3] = el as HTMLLIElement)}
           className={`${styles.carousel__item} ${expandedCardIndex === 3 ? styles.expanded : ''}`}
@@ -122,7 +191,29 @@ const Card: React.FC = () => {
         >
           <img src="path_to_your_image4.jpg" alt="Description 4" />
           <div className={styles.text}>Card 4</div>
+          {expandedCardIndex === 3 && (
+            <div className={styles.expandedContent}>
+              <div className={styles.info}>
+                <p>
+                  Built a machine learning model to predict stock prices using historical data, incorporating a variety of features
+                  such as moving averages and volume.
+                </p>
+                <ul>
+                  <li>
+                    Trained the model using a neural network with Keras and TensorFlow, achieving an accuracy rate of over 85%.
+                  </li>
+                  <li>
+                    Deployed the model on AWS Lambda for real-time predictions, making it accessible via a simple API.
+                  </li>
+                </ul>
+              </div>
+              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+                Close
+              </button>
+            </div>
+          )}
         </li>
+  
         <li
           ref={(el) => (elemsRef.current[4] = el as HTMLLIElement)}
           className={`${styles.carousel__item} ${expandedCardIndex === 4 ? styles.expanded : ''}`}
@@ -130,10 +221,31 @@ const Card: React.FC = () => {
         >
           <img src="path_to_your_image5.jpg" alt="Description 5" />
           <div className={styles.text}>Card 5</div>
+          {expandedCardIndex === 4 && (
+            <div className={styles.expandedContent}>
+              <div className={styles.info}>
+                <p>
+                  Led a team to develop a mobile app for event management, allowing users to create, join, and manage events with
+                  ease.
+                </p>
+                <ul>
+                  <li>
+                    Used Flutter to build the app for both Android and iOS, achieving a smooth user experience across platforms.
+                  </li>
+                  <li>
+                    Built a backend with Firebase for real-time updates and cloud-based storage of event data.
+                  </li>
+                </ul>
+              </div>
+              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+                Close
+              </button>
+            </div>
+          )}
         </li>
       </ul>
     </div>
   );
-};
+}
 
 export default Card;

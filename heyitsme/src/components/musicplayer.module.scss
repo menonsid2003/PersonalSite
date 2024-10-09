@@ -1,0 +1,155 @@
+$app-bg-color: #ffeff5;
+$player-bg-color: #fff;
+$track-bg-color: #fff7f7;
+$control-bg-color: #fff;
+$hover-color: #d6d6de;
+$button-color: #d6dee7;
+$active-color: #f86d92;
+$seek-bar-color: #fd6d94;
+$card-width: 430px; // Set fixed width of the player
+$card-height: 150px; // Set height for the player
+
+$rotation-duration: 10s; // Duration for one full rotation
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.paused {
+  animation-play-state: paused; // Pause the animation
+}
+
+.app-cover {
+  width: $card-width; // Set the fixed width of the player
+  height: $card-height; // Set height for the player
+  background-color: $player-bg-color; // Set the background color for the player
+  border-radius: 15px; // Rounded corners
+  box-shadow: 0 30px 80px rgba(101, 101, 101, 0.5); // Shadow effect
+  display: flex; // Use flexbox for inner elements
+  flex-direction: column; // Arrange items in a column
+  justify-content: space-between; // Space out elements
+  padding: 15px; // Add padding
+}
+
+.player-track {
+  background-color: $track-bg-color;
+  border-radius: 15px 15px 0 0;
+  padding: 10px;
+}
+
+.album-name {
+  color: #54576f;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.track-name {
+  color: #acaebd;
+  font-size: 13px;
+  margin: 2px 0 13px 0;
+}
+
+.track-time {
+  display: flex; // Flexbox for layout
+  justify-content: space-between; // Space items apart
+  margin-bottom: 3px;
+
+  .current-time,
+  .track-length {
+    color: #acaebd;
+    font-size: 11px;
+  }
+}
+
+.s-area {
+  position: relative;
+  height: 4px;
+  background-color: #ffe8ee;
+  cursor: pointer;
+  border-radius: 4px;
+
+  .s-hover {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.2;
+    z-index: 2;
+  }
+
+  .seek-bar {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background-color: $seek-bar-color;
+    transition: 0.2s ease width;
+    z-index: 1;
+  }
+}
+
+.player-content {
+  position: relative;
+  flex-grow: 1; // Allow this section to grow and fill the space
+  display: flex; // Use flexbox for alignment
+  justify-content: center; // Center items horizontally
+  align-items: center; // Center items vertically
+}
+
+.album-art {
+  width: 115px; // Fixed width
+  height: 115px; // Fixed height
+  margin-right: 20px; // Space between album art and controls
+  overflow: hidden;
+  border-radius: 50%; // Round the album art
+  transition: opacity 0.2s ease;
+
+  &.rotating {
+    animation: rotate $rotation-duration linear infinite; // Apply rotation animation
+  }
+
+  img {
+    width: 100%; // Full width of the container
+    height: 100%; // Full height of the container
+    object-fit: cover; // Maintain aspect ratio
+  }
+}
+
+.player-controls {
+  display: flex; // Flexbox for control layout
+  justify-content: space-around; // Space out controls evenly
+  align-items: center; // Center controls vertically
+  height: 100%; // Full height of the player content
+
+  .control {
+    .button {
+      width: 36px; // Fixed size for buttons
+      height: 36px; // Fixed size for buttons
+      background-color: $control-bg-color;
+      border-radius: 50%; // Round buttons
+      cursor: pointer;
+      transition: 0.2s ease all;
+
+      i {
+        color: $button-color;
+        font-size: 20px; // Font size for icons
+      }
+
+      &:hover {
+        background-color: $hover-color;
+
+        i {
+          color: #fff; // Change icon color on hover
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import styles from './App.module.css';
-import Card from './components/carousel.tsx';
-
+import Card from './components/carousel';
+import MusicPlayer from './components/musicplayer';
 
 function App() {
   return (
@@ -10,7 +10,12 @@ function App() {
         <div></div>
         <div></div>
       </div>
-      <Card />
+      <div className={styles.card}>
+        <Card />
+      </div>
+      <div className={styles.musicplayer}>
+        <MusicPlayer />
+      </div>
     </div>
   );
 }
