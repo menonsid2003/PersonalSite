@@ -17,7 +17,7 @@ const albumArtworks = [
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_5.jpg",
 ];
 const trackUrl = [
-  "../assets/coloryournight.mp3",
+  "https://personalsiteassets.s3.amazonaws.com/coloryournight.mp3",
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/1.mp3",
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/3.mp3",
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/4.mp3",

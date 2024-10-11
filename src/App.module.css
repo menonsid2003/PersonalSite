@@ -98,7 +98,6 @@
 
 .card{
     position: absolute;
-    visibility: hidden;
 }
 
 .musicplayer {
@@ -109,6 +108,8 @@ background-image: url("https://www.transparenttextures.com/patterns/wood-pattern
 /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Shadow for visual effect */
+    right: 80%;
+    top: 70%
   }
 
 /*

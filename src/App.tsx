@@ -5,7 +5,7 @@ import MusicPlayer from './components/musicplayer';
 function App() {
   return (
     <div className={styles.App}>
-      <img className={styles.spotlightimg} src="../assets/spotlight.png" alt="Spotlight" />
+      <img className={styles.spotlightimg} src="https://personalsiteassets.s3.amazonaws.com/spotlight.png" alt="Spotlight" />
       <div className={styles.spotlight}> 
         <div></div>
         <div></div>

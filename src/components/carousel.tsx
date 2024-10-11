@@ -7,8 +7,8 @@ const Card: React.FC = () => {
   const [expandedCardIndex, setExpandedCardIndex] = useState<number | null>(null);
 
   // Create Audio objects for the card expand/close sound effects
-  const expandAudio = useRef(new Audio('../assets/cardexpand.mp3'));
-  const closeAudio = useRef(new Audio('../assets/closecard.mp3'));
+  const expandAudio = useRef(new Audio('https://personalsiteassets.s3.amazonaws.com/cardexpand.mp3'));
+  const closeAudio = useRef(new Audio('https://personalsiteassets.s3.amazonaws.com/closecard.mp3'));
 
   // Set the volume level (0 is muted, 1 is the maximum volume)
   expandAudio.current.volume = 0.3;
@@ -105,7 +105,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 0 ? styles.expanded : ''}`}
           data-pos="-2"
         >
-          <img src="../assets/gamehaven.png" alt="Description 1" />
+          <img src="https://personalsiteassets.s3.amazonaws.com/gamehaven.png" alt="Description 1" />
           <div className={styles.text}>Game Haven</div>
           {expandedCardIndex === 0 && (
             <div className={styles.expandedContent}>
@@ -136,7 +136,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 1 ? styles.expanded : ''}`}
           data-pos="-1"
         >
-          <img src="../assets/stockapp.png" alt="Stock Analysis App" />
+          <img src="https://personalsiteassets.s3.amazonaws.com/stockapp.png" alt="Stock Analysis App" />
           <div className={styles.text}>Stock Analysis App</div>
           {expandedCardIndex === 1 && (
             <div className={styles.expandedContent}>
@@ -161,7 +161,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${styles.carousel__item_active} ${expandedCardIndex === 2 ? styles.expanded : ''}`}
           data-pos="0"
         >
-          <img src="../assets/parkingbuddy.png" alt="Parking Buddy" />
+          <img src="https://personalsiteassets.s3.amazonaws.com/parkingbuddy.png" alt="Parking Buddy" />
           <div className={styles.text}>Parking Buddy</div>
           {expandedCardIndex === 2 && (
             <div className={styles.expandedContent}>
