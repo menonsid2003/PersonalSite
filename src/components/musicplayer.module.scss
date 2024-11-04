@@ -1,16 +1,14 @@
-$app-bg-color: #ffeff5;
-$player-bg-color: #fff;
-$track-bg-color: #fff7f7;
-$control-bg-color: #fff;
+// Variables
+$track-bg-color: #000000;
 $hover-color: #d6d6de;
 $button-color: #d6dee7;
 $active-color: #f86d92;
 $seek-bar-color: #fd6d94;
-$card-width: 430px; // Set fixed width of the player
-$card-height: 150px; // Set height for the player
+$card-width: 530px;
+$card-height: 180px;
+$rotation-duration: 10s;
 
-$rotation-duration: 10s; // Duration for one full rotation
-
+// Animations
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -25,129 +23,172 @@ $rotation-duration: 10s; // Duration for one full rotation
   animation-play-state: paused; // Pause the animation
 }
 
-.app-cover {
-  width: $card-width; // Set the fixed width of the player
-  height: $card-height; // Set height for the player
-  background-color: $player-bg-color; // Set the background color for the player
-  border-radius: 15px; // Rounded corners
-  box-shadow: 0 30px 80px rgba(101, 101, 101, 0.5); // Shadow effect
-  display: flex; // Use flexbox for inner elements
-  flex-direction: column; // Arrange items in a column
-  justify-content: space-between; // Space out elements
-  padding: 15px; // Add padding
-}
-
-.player-track {
+// Main Layout
+.appcover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  width: $card-width;
+  height: $card-height;
+  border-radius: 15px;
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  border-radius: 8px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   background-color: $track-bg-color;
-  border-radius: 15px 15px 0 0;
-  padding: 10px;
+
+  // Shift the music player 50% to the right
+  transform: translateX(0%);
 }
 
-.album-name {
-  color: #54576f;
-  font-size: 17px;
-  font-weight: bold;
-}
-
-.track-name {
-  color: #acaebd;
-  font-size: 13px;
-  margin: 2px 0 13px 0;
-}
-
-.track-time {
-  display: flex; // Flexbox for layout
-  justify-content: space-between; // Space items apart
-  margin-bottom: 3px;
-
-  .current-time,
-  .track-length {
-    color: #acaebd;
-    font-size: 11px;
-  }
-}
-
-.s-area {
+.player {
   position: relative;
-  height: 4px;
-  background-color: #ffe8ee;
-  cursor: pointer;
-  border-radius: 4px;
-
-  .s-hover {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.2;
-    z-index: 2;
-  }
-
-  .seek-bar {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    background-color: $seek-bar-color;
-    transition: 0.2s ease width;
-    z-index: 1;
-  }
-}
-
-.player-content {
-  position: relative;
-  flex-grow: 1; // Allow this section to grow and fill the space
-  display: flex; // Use flexbox for alignment
-  justify-content: center; // Center items horizontally
-  align-items: center; // Center items vertically
-}
-
-.album-art {
-  width: 115px; // Fixed width
-  height: 115px; // Fixed height
-  margin-right: 20px; // Space between album art and controls
+  margin-top: 0;
+  padding: 8px 12px;
+  left: 15%;
+  width: $card-width - 190px;
+  height: $card-height - 20px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
-  border-radius: 50%; // Round the album art
+}
+
+// Album Art
+.album-art {
+  position: fixed; // Allows the album art to be positioned relative to its nearest positioned ancestor
+  top: 10px; // Adjust this value to position it vertically above the music player
+  left: 1%; // This will position it to the left of the music player, adjust as necessary
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 50%;
   transition: opacity 0.2s ease;
+  z-index: 3; // Ensure it appears above the music player
+
 
   &.rotating {
-    animation: rotate $rotation-duration linear infinite; // Apply rotation animation
+    animation: rotate $rotation-duration linear infinite;
   }
 
   img {
-    width: 100%; // Full width of the container
-    height: 100%; // Full height of the container
-    object-fit: cover; // Maintain aspect ratio
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
-.player-controls {
-  display: flex; // Flexbox for control layout
-  justify-content: space-around; // Space out controls evenly
-  align-items: center; // Center controls vertically
-  height: 100%; // Full height of the player content
 
-  .control {
-    .button {
-      width: 36px; // Fixed size for buttons
-      height: 36px; // Fixed size for buttons
-      background-color: $control-bg-color;
-      border-radius: 50%; // Round buttons
-      cursor: pointer;
-      transition: 0.2s ease all;
+// Player Track Information
+.player-track {
+  padding: 8px 12px;
+  overflow: hidden; // Hide overflow text initially
+  white-space: nowrap; // Prevent text from wrapping
+  text-overflow: ellipsis;
 
-      i {
-        color: $button-color;
-        font-size: 20px; // Font size for icons
-      }
+  .album-name {
+    color: #54576f;
+    font-size: 16px;
+    font-weight: bold;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%; // Ensure text fits within container
+  }
 
-      &:hover {
-        background-color: $hover-color;
+  .track-name {
+    color: #acaebd;
+    font-size: 13px;
+    margin: 3px 0;
+    //animation: scroll-text 5s linear infinite
+  }
+
+  .track-time {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+
+    .current-time,
+    .track-length {
+      color: #acaebd;
+      font-size: 11px;
+    }
+  }
+
+  .s-area {
+    position: relative;
+    height: 6px;
+    background-color: #ffe8ee;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+
+    .s-hover {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0.3;
+      z-index: 2;
+    }
+
+    .seek-bar {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      background-color: $seek-bar-color;
+      transition: width 0.2s ease;
+      z-index: 1;
+    }
+  }
+}
+
+/*
+// Scrolling Text Animation
+@keyframes scroll-text {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+*/
+
+// Player Controls
+.player-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 8px;
+
+  .player-controls {
+    display: flex;
+    gap: 15px;
+
+    .control {
+      .button {
+        width: 36px;
+        height: 36px;
+        background-color: transparent;
+        border: 2px solid $button-color;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
 
         i {
-          color: #fff; // Change icon color on hover
+          color: $button-color;
+          font-size: 18px;
+        }
+
+        &:hover {
+          background-color: $hover-color;
+
+          i {
+            color: #fff;
+          }
         }
       }
     }

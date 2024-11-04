@@ -1,0 +1,84 @@
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$hover-color: #0056b3;
+$background-color: rgba(0, 0, 0, 0.0);
+
+/* srisakdi-latin-400-normal */
+@font-face {
+    font-family: 'Srisakdi';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/srisakdi@latest/latin-400-normal.woff2) format('woff2'), url(https://cdn.jsdelivr.net/fontsource/fonts/srisakdi@latest/latin-400-normal.woff) format('woff');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $background-color;
+    width: 100vw;
+    padding: 10px 20px;
+
+    .logo {
+        font-family: 'Srisakdi';
+        font-size: 26px;
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        flex: 1; // Added to push the content to the right
+
+        a {
+            text-decoration: none;
+            color: $primary-color;
+        }
+    }
+
+    .navLinks {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-right: 20px; // Optional: spacing from the buttons
+
+        .navItem {
+            margin: 0 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: $secondary-color;
+
+            &:hover {
+                color: $hover-color;
+            }
+        }
+    }
+
+    .navButtons {
+        display: flex;
+
+        .loginBtn,
+        .signupBtn {
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .loginBtn {
+            background-color: $secondary-color;
+            color: white;
+        }
+
+        .signupBtn {
+            background-color: $primary-color;
+            color: white;
+
+            &:hover {
+                background-color: $hover-color;
+            }
+        }
+    }
+}

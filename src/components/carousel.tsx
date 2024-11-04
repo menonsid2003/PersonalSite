@@ -7,8 +7,8 @@ const Card: React.FC = () => {
   const [expandedCardIndex, setExpandedCardIndex] = useState<number | null>(null);
 
   // Create Audio objects for the card expand/close sound effects
-  const expandAudio = useRef(new Audio('https://personalsiteassets.s3.amazonaws.com/cardexpand.mp3'));
-  const closeAudio = useRef(new Audio('https://personalsiteassets.s3.amazonaws.com/closecard.mp3'));
+  const expandAudio = useRef(new Audio('../assets/cardexpand.mp3'));
+  const closeAudio = useRef(new Audio('../assets/closecard.mp3'));
 
   // Set the volume level (0 is muted, 1 is the maximum volume)
   expandAudio.current.volume = 0.3;
@@ -105,7 +105,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 0 ? styles.expanded : ''}`}
           data-pos="-2"
         >
-          <img src="https://personalsiteassets.s3.amazonaws.com/gamehaven.png" alt="Description 1" />
+          <img src="../assets/gamehaven.png" alt="Description 1" />
           <div className={styles.text}>Game Haven</div>
           {expandedCardIndex === 0 && (
             <div className={styles.expandedContent}>
@@ -136,7 +136,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 1 ? styles.expanded : ''}`}
           data-pos="-1"
         >
-          <img src="https://personalsiteassets.s3.amazonaws.com/stockapp.png" alt="Stock Analysis App" />
+          <img src="../assets/stockapp.png" alt="Stock Analysis App" />
           <div className={styles.text}>Stock Analysis App</div>
           {expandedCardIndex === 1 && (
             <div className={styles.expandedContent}>
@@ -161,7 +161,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${styles.carousel__item_active} ${expandedCardIndex === 2 ? styles.expanded : ''}`}
           data-pos="0"
         >
-          <img src="https://personalsiteassets.s3.amazonaws.com/parkingbuddy.png" alt="Parking Buddy" />
+          <img src="../assets/parkingbuddy.png" alt="Parking Buddy" />
           <div className={styles.text}>Parking Buddy</div>
           {expandedCardIndex === 2 && (
             <div className={styles.expandedContent}>
@@ -190,20 +190,19 @@ const Card: React.FC = () => {
           data-pos="1"
         >
           <img src="path_to_your_image4.jpg" alt="Description 4" />
-          <div className={styles.text}>Card 4</div>
+          <div className={styles.text}>Personal Portfolio</div>
           {expandedCardIndex === 3 && (
             <div className={styles.expandedContent}>
               <div className={styles.info}>
-                <p>
-                  Built a machine learning model to predict stock prices using historical data, incorporating a variety of features
-                  such as moving averages and volume.
-                </p>
                 <ul>
                   <li>
-                    Trained the model using a neural network with Keras and TensorFlow, achieving an accuracy rate of over 85%.
+                  Building a personal portfolio website using React and TypeScript, with a strong focus on design aesthetics,
+                  responsive UI, and showcasing technical projects.
                   </li>
                   <li>
-                    Deployed the model on AWS Lambda for real-time predictions, making it accessible via a simple API.
+                  Deploying via AWS Amplify with S3 buckets for efficient asset management, incorporating clean code
+                  architecture, component-based development, and ensuring cross-device compatibility for a professional online
+                  presence.
                   </li>
                 </ul>
               </div>
@@ -220,20 +219,15 @@ const Card: React.FC = () => {
           data-pos="2"
         >
           <img src="path_to_your_image5.jpg" alt="Description 5" />
-          <div className={styles.text}>Card 5</div>
+          <div className={styles.text}>Wearable Active Tracker</div>
           {expandedCardIndex === 4 && (
             <div className={styles.expandedContent}>
               <div className={styles.info}>
-                <p>
-                  Led a team to develop a mobile app for event management, allowing users to create, join, and manage events with
-                  ease.
-                </p>
                 <ul>
                   <li>
-                    Used Flutter to build the app for both Android and iOS, achieving a smooth user experience across platforms.
-                  </li>
-                  <li>
-                    Built a backend with Firebase for real-time updates and cloud-based storage of event data.
+                  Designing a wireless optical motion tracking system, using computer vision to track spatial and orientational
+                  data ( 6DOF ) for various objects in VR environments, with a Unity application for hand and object tracking,
+                  enabling accurate real-time interaction within the VR environment without the need for controllers.
                   </li>
                 </ul>
               </div>

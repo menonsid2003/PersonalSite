@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import styles from './musicplayer.module.scss';
 
-const albums = ["Dawn", "Me & You", "Electro Boy", "Home", "Proxy (Original Mix)"];
+const albums = ["Color Your Night", "Me & You", "Electro Boy", "Home", "Proxy (Original Mix)"];
 const trackNames = [
-  "Skylike - Dawn",
+  "Azumi Takahashi, Lotus Juice - Persona 3 Reload",
   "Alex Skrindo - Me & You",
   "Kaaze - Electro Boy",
   "Jordan Schor - Home",
@@ -17,7 +17,7 @@ const albumArtworks = [
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_5.jpg",
 ];
 const trackUrl = [
-  "https://personalsiteassets.s3.amazonaws.com/coloryournight.mp3",
+  "../assets/coloryournight.mp3",
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/1.mp3",
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/3.mp3",
   "https://raw.githubusercontent.com/himalayasingh/music-player-1/master/music/4.mp3",
@@ -116,47 +116,47 @@ useEffect(() => {
   }, [currIndex]); //adding isPlaying breaks the pause function, but not having it causes yellow squiggles?
 
   return (
-    <div className={styles.appcover}>
-    <div className={styles.player}>
-      <div className={styles.playerTrack}>
-        <div className={styles.albumName}>{albums[currIndex]}</div>
-        <div className={styles.trackName}>{trackNames[currIndex]}</div>
-        <div className={styles.trackTime}>
-          <div className={styles.currentTime}>{currentTime}</div>
-          <div className={styles.trackLength}>{trackDuration}</div>
-        </div>
-        <div className={styles.sArea} onClick={playPause}>
-          <div className={styles.sHover}></div>
-          <div ref={seekBarRef} className={styles.seekBar}></div>
-        </div>
-      </div>
-      <div className={styles.playerContent}>
+<div className={styles.appcover}>
       <div className={styles.albumArt + (isPlaying ? ` ${styles.rotating}` : '')}>
-  <img src={albumArtworks[currIndex]} alt="Album Art" className="active" />
-</div>
-
-        <div className={styles.playerControls}>
-          <div className={styles.control}>
-            <div className={styles.button} onClick={handlePreviousTrack}>
-              <i className="fas fa-backward"></i>
-            </div>
-          </div>
-          <div className={styles.control}>
-            <div className={styles.button} onClick={playPause}>
-              <i className={isPlaying ? "fas fa-pause" : "fas fa-play"}></i>
-            </div>
-          </div>
-          <div className={styles.control}>
-            <div className={styles.button} onClick={handleNextTrack}>
-              <i className="fas fa-forward"></i>
-            </div>
-          </div>
-        </div>
+        <img src={albumArtworks[currIndex]} alt="Album Art" className="active" />
       </div>
-    </div>
-    <audio ref={audioRef}></audio>
-  </div>  
-  );
+   <div className={styles.player}>
+   <div className={styles.playerTrack}>
+      <div className={styles.albumName}>{albums[currIndex]}</div>
+      <div className={styles.trackName}>{trackNames[currIndex]}</div>
+      <div className={styles.trackTime}>
+         <div className={styles.currentTime}>{currentTime}</div>
+         <div className={styles.trackLength}>{trackDuration}</div>
+      </div>
+      <div className={styles.sArea} onClick={playPause}>
+         <div className={styles.sHover}></div>
+         <div ref={seekBarRef} className={styles.seekBar}></div>
+      </div>
+   </div>
+   <div className={styles.playerContent}>
+      <div className={styles.playerControls}>
+         <div className={styles.control}>
+            <div className={styles.button} onClick={handlePreviousTrack}>
+               <i className="fas fa-backward"></i>
+            </div>
+         </div>
+         <div className={styles.control}>
+            <div className={styles.button} onClick={playPause}>
+               <i className={isPlaying ? "fas fa-pause" : "fas fa-play"}></i>
+            </div>
+         </div>
+         <div className={styles.control}>
+            <div className={styles.button} onClick={handleNextTrack}>
+               <i className="fas fa-forward"></i>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<audio ref={audioRef}></audio>
+</div>  
+);
+
 };
 
 export default MusicPlayer;

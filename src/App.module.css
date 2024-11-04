@@ -1,5 +1,6 @@
 @import "./vars.css";
 
+
 .App {
     background-color: black;
     background: radial-gradient(85.99% 85.99% at 50% 108.15%, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.25) 100%), #020015;
@@ -12,19 +13,8 @@
     justify-content: center;
     align-items: center;
     z-index: 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
-
-
-.vantaBg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -2;
-}
-
-
 
 .spotlight {
 
@@ -101,16 +91,19 @@
 }
 
 .musicplayer {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    z-index: 3;
+    max-width: 100vw;
+    margin: 0;
+}
+
+.navbar{
     position: absolute;
-    z-index: 1000; /* Ensure it appears above other content */
-    background-color: #050301;
-background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Shadow for visual effect */
-    right: 80%;
-    top: 70%
-  }
+    top: 0%;
+    z-index: 2;
+}
 
 /*
 animation-name: floating;
