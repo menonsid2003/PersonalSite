@@ -11,9 +11,9 @@ function App() {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // Create Audio objects for the card expand/close sound effects
-  const slideIn = useRef(new Audio('../assets/tapeinsertcut.mp3'));
+  const slideIn = useRef(new Audio('https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/tapeinsertcut.mp3'));
   slideIn.current.volume = 0.5;
-  const slideOut = useRef(new Audio('../assets/tapeeject.mp3'));
+  const slideOut = useRef(new Audio('https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/tapeeject.mp3'));
   slideOut.current.volume = 0.4;
 
   // Load about page on default
