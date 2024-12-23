@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './carousel.module.scss';
+
 /* sfx from pixabay */
 const Card: React.FC = () => {
   const carouselListRef = useRef<HTMLUListElement | null>(null);
@@ -7,12 +8,12 @@ const Card: React.FC = () => {
   const [expandedCardIndex, setExpandedCardIndex] = useState<number | null>(null);
 
   // Create Audio objects for the card expand/close sound effects
-  const expandAudio = useRef(new Audio('../assets/cardexpand.mp3'));
-  const closeAudio = useRef(new Audio('../assets/closecard.mp3'));
+  const expandAudio = useRef(new Audio('https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/cardexpand.mp3'));
+  const closeAudio = useRef(new Audio('https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/closecard.mp3'));
 
   // Set the volume level (0 is muted, 1 is the maximum volume)
-  expandAudio.current.volume = 0.3;
-  closeAudio.current.volume = 0.2;
+  expandAudio.current.volume = 0.7;
+  closeAudio.current.volume = 0.7;
 
   useEffect(() => {
     const carouselList = carouselListRef.current;
@@ -28,12 +29,16 @@ const Card: React.FC = () => {
       }
 
       const currentCardPos = elems.findIndex((elem) => elem && elem.dataset.pos === '0');
+      
+        // If the clicked card is already expanded, do nothing
+  if (isItem.dataset.pos === '0' && expandedCardIndex === currentCardPos) {
+    return; // Do not close the card
+  }
 
       if (isItem.dataset.pos === '0') {
         if (currentCardPos !== -1) {
           if (expandedCardIndex === currentCardPos) {
-            // If the card is currently expanded, play close audio when collapsing it
-            closeAudio.current.play();
+            return;
           } else {
             // If the card is being expanded, play expand audio
             expandAudio.current.play();
@@ -98,14 +103,16 @@ const Card: React.FC = () => {
   }, [expandedCardIndex]);
 
   return (
-    <div className={styles.carousel}>
+    <div>
+    <h2 className={styles.title}>Featured Projects</h2>
+    <div data-testid="card-component" className={styles.carousel}>
       <ul className={styles.carousel__list} ref={carouselListRef}>
         <li
           ref={(el) => (elemsRef.current[0] = el as HTMLLIElement)}
           className={`${styles.carousel__item} ${expandedCardIndex === 0 ? styles.expanded : ''}`}
           data-pos="-2"
         >
-          <img src="../assets/gamehaven.png" alt="Description 1" />
+          <img src="https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/gamehaven.png" alt="Description 1" />
           <div className={styles.text}>Game Haven</div>
           {expandedCardIndex === 0 && (
             <div className={styles.expandedContent}>
@@ -124,8 +131,11 @@ const Card: React.FC = () => {
                   </li>
                 </ul>
               </div>
-              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+              <button className={styles.closeButton} onClick={() => {setExpandedCardIndex(null); closeAudio.current.play();}}>
                 Close
+              </button>
+              <button className={styles.githubButton} onClick={(event) => {event.stopPropagation(); console.log('Button clicked'); window.open('https://github.com/menonsid2003/GameStore-Website', '_blank');}}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/640px-Octicons-mark-github.svg.png"></img>
               </button>
             </div>
           )}
@@ -136,7 +146,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 1 ? styles.expanded : ''}`}
           data-pos="-1"
         >
-          <img src="../assets/stockapp.png" alt="Stock Analysis App" />
+          <img src="https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/stockapp.png" alt="Stock Analysis App" />
           <div className={styles.text}>Stock Analysis App</div>
           {expandedCardIndex === 1 && (
             <div className={styles.expandedContent}>
@@ -149,8 +159,11 @@ const Card: React.FC = () => {
                 </li>
                 </ul>
               </div>
-              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+              <button className={styles.closeButton} onClick={() => {setExpandedCardIndex(null); closeAudio.current.play();}}>
                 Close
+              </button>
+              <button className={styles.githubButton} onClick={(event) => {event.stopPropagation(); console.log('Button clicked'); window.open('https://github.com/menonsid2003/StockDataVisualizer', '_blank');}}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/640px-Octicons-mark-github.svg.png"></img>
               </button>
             </div>
           )}
@@ -161,14 +174,14 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${styles.carousel__item_active} ${expandedCardIndex === 2 ? styles.expanded : ''}`}
           data-pos="0"
         >
-          <img src="../assets/parkingbuddy.png" alt="Parking Buddy" />
+          <img src="https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/parkingbuddy.png" alt="Parking Buddy" />
           <div className={styles.text}>Parking Buddy</div>
           {expandedCardIndex === 2 && (
             <div className={styles.expandedContent}>
               <div className={styles.info}>
                 <ul>
                   <li>
-                  Created a Ruby web page using the Google Maps API to display a map of the university and parking lots,
+                  Created a Ruby on Rails web app using the Google Maps API to display a map of the university and parking lots,
                    showing available and taken spots, streamlining experiences for students, faculty, and visitors.
                   </li>
                   <li>
@@ -177,7 +190,7 @@ const Card: React.FC = () => {
                   </li>
                 </ul>
               </div>
-              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+              <button className={styles.closeButton} onClick={() => {setExpandedCardIndex(null); closeAudio.current.play();}}>
                 Close
               </button>
             </div>
@@ -189,7 +202,7 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 3 ? styles.expanded : ''}`}
           data-pos="1"
         >
-          <img src="path_to_your_image4.jpg" alt="Description 4" />
+          <img src="https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/personalproject1.png" alt="this website!" />
           <div className={styles.text}>Personal Portfolio</div>
           {expandedCardIndex === 3 && (
             <div className={styles.expandedContent}>
@@ -201,13 +214,16 @@ const Card: React.FC = () => {
                   </li>
                   <li>
                   Deploying via AWS Amplify with S3 buckets for efficient asset management, incorporating clean code
-                  architecture, component-based development, and ensuring cross-device compatibility for a professional online
+                  architecture, component-based development, and future planned implementations for a professional online
                   presence.
                   </li>
                 </ul>
               </div>
-              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+              <button className={styles.closeButton} onClick={() => {setExpandedCardIndex(null); closeAudio.current.play();}}>
                 Close
+              </button>
+              <button className={styles.githubButton} onClick={(event) => {event.stopPropagation(); console.log('Button clicked'); window.open('https://github.com/menonsid2003/PersonalSite', '_blank');}}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/640px-Octicons-mark-github.svg.png"></img>
               </button>
             </div>
           )}
@@ -218,26 +234,37 @@ const Card: React.FC = () => {
           className={`${styles.carousel__item} ${expandedCardIndex === 4 ? styles.expanded : ''}`}
           data-pos="2"
         >
-          <img src="path_to_your_image5.jpg" alt="Description 5" />
+          <img src="https://personalportfoliopublicassets.s3.us-east-1.amazonaws.com/carttDemo.png" alt="Description 5" />
           <div className={styles.text}>Wearable Active Tracker</div>
           {expandedCardIndex === 4 && (
             <div className={styles.expandedContent}>
               <div className={styles.info}>
                 <ul>
                   <li>
-                  Designing a wireless optical motion tracking system, using computer vision to track spatial and orientational
-                  data ( 6DOF ) for various objects in VR environments, with a Unity application for hand and object tracking,
+                  Designed a wireless optical motion tracking system, using a Luxonis OAK D-Lite camera and computer vision to track spatial and orientational
+                  data ( 6DOF ) for various objects in VR environments.
+                  </li>
+                  <li>
+                  Utilized ArUco markers with a Unity application for hand and object tracking,
                   enabling accurate real-time interaction within the VR environment without the need for controllers.
+                  </li>
+                  <li>
+                  Connected a Python WebSocket server running on a Raspberry Pi 4 to a Unity application with a C# WebSocket client, enabling real-time data transfer
+                  between the camera and the VR environment.
                   </li>
                 </ul>
               </div>
-              <button className={styles.closeButton} onClick={() => setExpandedCardIndex(null)}>
+              <button className={styles.closeButton} onClick={() => {setExpandedCardIndex(null); closeAudio.current.play();}}>
                 Close
+              </button>
+              <button className={styles.githubButton} onClick={(event) => {event.stopPropagation(); console.log('Button clicked'); window.open('https://github.com', '_blank');}}>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/640px-Octicons-mark-github.svg.png"></img>
               </button>
             </div>
           )}
         </li>
       </ul>
+    </div>
     </div>
   );
 }

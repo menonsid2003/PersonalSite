@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+.title {
+  position: relative;
+  font-size: 48px;
+
+  text-align: center;
+  font-family: "Rubik", serif;
+    font-size: 5em;
+    text-decoration: none;
+    text-align: center;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgb(54, 2, 75);
+    text-shadow: 0 0 0 #fff;
+    text-shadow: 3px 2px 0 #fff;
+}
+
 .carousel {
   display: flex;
   width: 100%;
@@ -186,5 +205,30 @@
         background-color: rgba(255, 0, 0, 1);
       }
     }
+
+    .githubButton {
+      position: absolute;
+      margin-top: 10px;
+      bottom: 10px;
+      right: 10px;
+      background-color: #ffffff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 0px 4px;
+      cursor: pointer;
+      font-size: 14px;
+
+      img {
+        width: 25px;
+        height: 25px;
+        bottom: 2px;
+      }
+    }
+
+    .githubButton:hover {
+      background-color: #cbced1;
+    }
+
   }
 }

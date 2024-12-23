@@ -116,7 +116,7 @@ useEffect(() => {
   }, [currIndex]); //adding isPlaying breaks the pause function, but not having it causes yellow squiggles?
 
   return (
-<div className={styles.appcover}>
+<div data-testid="musicplayer-component" className={styles.appcover}>
       <div className={styles.albumArt + (isPlaying ? ` ${styles.rotating}` : '')}>
         <img src={albumArtworks[currIndex]} alt="Album Art" className="active" />
       </div>

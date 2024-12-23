@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* General styles for the title */
+.title {
+    font-family: 'Rubik', serif;
+    font-size: 4em;
+    text-align: center;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgb(54, 2, 75);
+    text-shadow: 3px 2px 0 #fff;
+    line-height: 1;
+}
+
+.arrows {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    /* This centers the arrows horizontally */
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.carousel__item {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: flex-start;
+    color: #fff;
+    font-size: 18px;
+    width: 80%;
+    height: 70vh;
+    padding: 10px;
+    border-radius: 20px;
+    background: rgba(16, 5, 35, 0.47);
+    box-shadow: 0px 4px 12px rgba(50, 50, 50, 0.6);
+    overflow: hidden;
+
+    img {
+        width: 40%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        float: left;
+    }
+
+    .description {
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .extra {
+        font-size: 14px;
+        margin-top: 8px;
+        font-style: italic;
+        text-align: center;
+    }
+
+    .technologies {
+        font-size: 14px;
+        margin-top: 12px;
+        text-align: center;
+        color: #cfcfcf;
+
+        .technology {
+            display: inline-block;
+        }
+    }
+
+    .githubButton {
+        padding: 4px 8px;
+        height: 40px;
+        background-color: #fff;
+        color: black;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+
+        img {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            top: 5px;
+            margin-right: 0px;
+        }
+    }
+
+    .githubButton:hover {
+        background-color: #cbced1;
+    }
+}

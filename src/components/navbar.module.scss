@@ -1,7 +1,9 @@
-$primary-color: #007bff;
+$primary-color: #ffffff;
 $secondary-color: #6c757d;
-$hover-color: #0056b3;
+$hover-color: #b587ff;
 $background-color: rgba(0, 0, 0, 0.0);
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 /* srisakdi-latin-400-normal */
 @font-face {
@@ -23,7 +25,7 @@ $background-color: rgba(0, 0, 0, 0.0);
 
     .logo {
         font-family: 'Srisakdi';
-        font-size: 26px;
+        font-size: 30px;
         color: rgb(255, 255, 255);
         font-weight: bold;
         flex: 1; // Added to push the content to the right
@@ -34,30 +36,12 @@ $background-color: rgba(0, 0, 0, 0.0);
         }
     }
 
-    .navLinks {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        margin-right: 20px; // Optional: spacing from the buttons
-
-        .navItem {
-            margin: 0 15px;
-            font-size: 18px;
-            text-decoration: none;
-            color: $secondary-color;
-
-            &:hover {
-                color: $hover-color;
-            }
-        }
-    }
-
     .navButtons {
         display: flex;
+        
 
-        .loginBtn,
-        .signupBtn {
+        .featuredBtn {
+            background: $primary-color; // Explicitly disable background artifacts
             border: none;
             padding: 8px 16px;
             cursor: pointer;
@@ -65,20 +49,16 @@ $background-color: rgba(0, 0, 0, 0.0);
             border-radius: 4px;
             margin-left: 10px;
             transition: background-color 0.3s ease;
-        }
-
-        .loginBtn {
-            background-color: $secondary-color;
-            color: white;
-        }
-
-        .signupBtn {
-            background-color: $primary-color;
-            color: white;
+            border: white 1px solid;
+            font-family: Rubik, sans-serif;
+            font-weight: 350;
 
             &:hover {
-                background-color: $hover-color;
+                background-color: transparent;
+                color: white;
+                border: white 1px solid;
             }
         }
     }
+
 }
