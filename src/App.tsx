@@ -32,6 +32,7 @@ function App() {
   };
 
   return (
+    <div>
     <div className={styles.App}>
       <div className={styles.stars1}></div>
       <div className={styles.stars2}></div>
@@ -59,6 +60,7 @@ function App() {
       <div className={`${styles.contactContainer} ${activeSection === 'contact' ? styles.dropDown : styles.moveUp}`}>
         <Contact />
       </div>
+    </div>
     </div>
   );
 }
