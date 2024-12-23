@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import styles from './App.module.scss';
 import Card from './components/carousel';
 //import MusicPlayer from './components/musicplayer';
